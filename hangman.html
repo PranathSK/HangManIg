@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="hangman.js"></script>
+    <link rel="stylesheet" href="hangman.css">
+    <title>Document</title>
+</head>
+<body>
+    <button class="start" id="start" onclick="dashes()">Press to Start</button>
+    <h id='word' class="word"></h>
+    <button onclick="location.reload();">New</button><br>
+    <input id="Gletter" type="text" maxlength="1" placeholder="Guess a Letter"> <button id="lSubmit" onclick="letterGuess()">Check</button><br>
+    <input id="Gword" placeholder="Guess the Word - 1 try"><button id="WSubmit" onclick="wordGuess()">Check</button><br>
+    
+    <h id="last" class="last">Current Stage: </h><br>
+    <img id="hang" src="https://www.oligalma.com/downloads/images/hangman/hangman/0.jpg">
+    <script>
+        document.getElementById('Gletter').addEventListener("keyup", function(event){
+            if (event.keyCode === 13)
+                letterGuess();
+        });
+        document.getElementById('Gword').addEventListener("keyup", function(event){
+            if (event.keyCode === 13)
+                wordGuess();
+        });
+    </script>
+</body>
+</html>

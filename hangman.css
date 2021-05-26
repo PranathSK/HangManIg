@@ -1,0 +1,36 @@
+body{
+    background-image: url('https://fsa.zobj.net/crop.php?r=u57QZwRHGjJ1UN60UXFhDTdhZhUcS-gj2aeJR9mXrL3eH--PN5CnTyMiGP6G0QKoCicMCysTgW1pprvpMYr3Tk7uhcxzehGRxQR3Eor62L9T8KfEjI4S6_HHHJTToSVjdmj2onkIWsardxMk');
+}
+input{
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 160px;
+    background: transparent;
+    font-size: 30px;
+    color: white;
+    text-align: center;
+}
+button.start{
+    margin-top: 20px;
+}
+h{
+    color: greenyellow;
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 35px;
+    font-size: 60px;
+}
+h.last{
+    margin-top: 20px;
+    margin-left: 200px;
+    font-size: 30px
+}
+button{
+    color: white;
+    background: transparent;
+    font-size: 30px;
+}
+img{
+    margin-top: 0px;
+    margin-left: 400px;
+}
