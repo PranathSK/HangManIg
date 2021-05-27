@@ -3,49 +3,75 @@ var totalWords = 'affix avenue awkward beekeeper boggle cobweb cycle disavow dup
 var totalWords = totalWords.split(' ');
 var key = totalWords[Math.round(Math.random()*40)].toUpperCase();
 var guesses = key.split(' ');
+
+// have errors as 0(initial) & just for development purpose log the key word hehe
 var errors = 0;
-var hint;
 console.log(key);
 
 // Set the guesses array to dashes
 for (var f = 0; f < key.length; f++)
     guesses[f] = '_';
+
+// Give a hint if no. of letters is >= 5
 if (key.length >= 5){
     var hint = Math.round(Math.random()*key.length);
     guesses[hint] = key.charAt(hint);
 }
 
+// Show the dashes on the top of the screen for the player to know the finished letters
 function dashes(){
     document.getElementById('word').innerHTML = '';
     for (var i = 0; i < guesses.length; i++)
         document.getElementById('word').innerHTML += guesses[i] + ' ';
     document.getElementById('start').style.visibility = "hidden";
 }
+
+// If the player hits enter or presses the check button after entering a letter 
 function letterGuess(){
     var c = document.getElementById('Gletter').value.toUpperCase();
+    // If the guesses letter is Present !!
     if (key.includes(c)){
+        // All the chars having same value as c must be shown ie if a letter is guessed, all places having it it shown
         for (var w = 0; w < guesses.length; w++){
+            // Equals the word
             if (c == key[w]){
-                if (guesses[w] == '_'){
+                // the space is still blank-Fill it in
+                if (guesses[w] == '_')
                     guesses[w] = c;
+                // If not
+                else{
+                    // Check if other blanks contain the same letter
+                    var count = 0;
+                    for (var v = w+1; v < key.length; v++){
+                        if (key[v] == c)
+                            count += 1;
+                    }
+                    // If they do not then for 5 seconds show that the letter exists
+                    if (count == 0){
+                        document.getElementById('last').innerHTML = 'Letter Already Present';
+                        setTimeout(function(){document.getElementById('last').innerHTML = 'Current Position: ';}, 5000);
+                    }
                 }
-                else
-                    alert('Letter Already Present!!');
             }
         }
     }
+    // If the letter is not in the word at all => Punishment extra part to the hanging...
     else{
         errors += 1;
         changeImage();
     }
+    // Checking for decisive result
     if (errors == 10)
         resultingText(false);
     if (guesses.toString().replaceAll(',', '') == key)
         resultingText(true);
+    
+    // Setting the input back to null and printing the new dashes again
     document.getElementById('Gletter').value = '';
     dashes();
 }
 
+// IF the player takes the risk of guessing the word | Equals = win / Not = Lose
 function wordGuess(){
     var w = document.getElementById('Gword').value.toUpperCase();
     if (w == key)
@@ -54,6 +80,7 @@ function wordGuess(){
         resultingText(false);
 }
 
+// Shout out to oligalma
 function changeImage(){
     var img = document.getElementById('hang');
     if (errors == 1)
@@ -78,6 +105,7 @@ function changeImage(){
         img.src = "https://www.oligalma.com/downloads/images/hangman/hangman/10.jpg";
 }
 
+// Do stuff if the result is decisive (RickRoll if lost)
 function resultingText(res){
     if (res){
         document.getElementById('hang').src = "https://image.shutterstock.com/image-vector/congrats-you-win-vector-banner-260nw-1927146812.jpg";
