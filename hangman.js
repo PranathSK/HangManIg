@@ -6,6 +6,8 @@ var guesses = key.split(' ');
 var errors = 0;
 var hint;
 console.log(key);
+
+// Set the guesses array to dashes
 for (var f = 0; f < key.length; f++)
     guesses[f] = '_';
 if (key.length >= 5){
